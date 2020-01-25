@@ -1,0 +1,123 @@
+---
+title: 'Lecture 6: Two Means'
+author: "Dr Jennifer Mankin"
+date: "25/01/2020"
+output: html_document
+---
+
+# Overview: Two Means
+
+* Study design
+  + Defining variables
+  + What question are we asking?
+* Statistical analysis
+  + Student's t-test
+  + Under the hood: drawing lines
+* Two means in R
+  + Welcome to `lm()`!
+  + Getting and interpreting results
+
+## Study design
+
+* 
+
+## Statistical analysis
+
+
+
+## Two means in R
+
+* Welcome to `lm()`!
+* Getting and interpreting results
+
+### Welcome to `lm()`!
+
+* Today's new function is a very important one
+  + We will use it for the rest of the term and...
+  + It will be very important next year as well!
+* What does it do?
+  + Creates a **l**inear **m**odel -> `lm()`
+  + A statistical model that looks like a line
+* How does the linear model work?
+  + Much more next week!
+
+### Basic Anatomy of `lm()`
+
+* `lm(outcome ~ predictor, data = data)`
+* Translation: 
+  + Create a linear model modelling the relationship between
+  + An outcome and a predictor
+  + Using the data in `data`
+* **Try it**: write down the command to predict `attract` from `colour` in our `elliot` data
+
+### Anatomy of `lm()`
+
+`lm(attract ~ colour, data = elliot)`
+
+* Create a linear model that models
+* Attractiveness score based on colour group
+* Using the data `elliot`
+
+### What will this model actually do?
+
+`attract ~ colour`
+
+* `attract` is a **continuous** variable: each participant's mean score on three rating scales of attractiveness
+* `colour` is a **categorical** variable: whether each participant saw the `red` condition or the `white` condition
+  + Independent: each participant saw only one of the two
+
+### What will this model actually do?
+
+`attract ~ colour`
+
+1. Group participants by `colour`
+2. Calculate the mean `attract` score for each `colour` group
+3. Create a linear model that captures the **difference in those means**
+
+## Let's have a look!
+
+```{r}
+attract_w <- rnorm(2000, mean = 4, sd = 0.5)
+attract_r <- rnorm(2000, mean = 7, sd = 0.5)
+attract <- c(attract_w,attract_r)
+elliot <- tibble(
+  colour = factor(rep(c("white", "red"), each = 2000)),
+  attract = attract
+)
+
+ggplot(elliot, aes(attract, fill = colour)) + 
+   geom_histogram(alpha = 0.5, aes(y = ..density..), position = 'identity')
+
+# Creating point plot with CIs
+ggplot(elliot, aes(x = colour, y = attract, fill = colour)) + 
+  stat_summary(fun.data = "mean_cl_normal") # doesn't work atm but might at work!
+
+```
+
+
+### `attract ~ colour`
+
+* Are these means **different**?
+  + Yes: the `colour` groups have different means of `attract`
+* Are these means different **enough**?
+  + How big of a difference is big enough to be meaningful?
+  + How big of a difference is big enough to be **significant**?
+
+### `attract ~ colour`
+
+Our model will give us two important things:
+* An **estimate** of the relationship between `colour` and `attract`
+  + Here: the difference between the means in the white and red groups
+* The **probability** of finding a difference in means of this size (or greater) occuring if seeing a white or red border has no effect on attractiveness
+  + i.e., if the null hypothesis is true
+
+### Getting results
+
+Let's run the model and see what it is telling us
+
+```{r}
+elliot_m <- lm(attract ~ colour, data = elliot)
+summary(elliot_m)
+```
+
+
