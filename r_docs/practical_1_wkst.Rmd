@@ -204,7 +204,7 @@ This should appear as:
 It is currently `r Sys.Date() %>% weekdays()`. There are `r people` people around me, `r (blueshirt/people*100) %>% round(2)`% of whom are wearing blue. 
 -->
 
-`r subtask()` **Challenge**: Complete the report below using the data from Task 1.
+`r subtask()` **Challenge**: Complete the report below using the data from Task 2.
 
 Analysis of the dataset `ToothGrowth` revealed that the high-dose group had a mean length of [replace with mean of high dose group] and the mid-dose group had a standard deviation of [replace with sd of mid-dose group]. The overall mean length in the original dataset was [replace with mean of `len` in `tooth_tib`].
 

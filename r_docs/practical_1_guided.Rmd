@@ -71,6 +71,8 @@ In **every** practical, we will ask you to do the same steps as soon as you arri
   + All three draw on things you learned in PAAS
 * The challenge tasks may include new functions or new ideas
   + Have a go, but don't worry if you get stuck!
+  + **IMPORTANT**: Complete the regular tasks first!
+    - **Challenge** tasks will help you increase your skills in R if you finish early, or if you'd like to practice more at home
 
 # Practice Quiz
 
@@ -82,5 +84,5 @@ In **every** practical, we will ask you to do the same steps as soon as you arri
 # Next Week
 
 * Quiz topic: same the practice quiz
-  + Revise practicals and tutorials from PAAS
-  + A few NEW questions from Dr Mankin's Week 1 lecture
+  + Revise lectures, practicals and tutorials from PAAS
+  + Try the practice quiz as much as you like!
